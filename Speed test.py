@@ -10,7 +10,9 @@ pidSens = {
             'RPM':'',
             'SPEED':'',
             'THROTTLE_POS':'',
-            'RUN_TIME','FUEL_LEVEL'
+            'RUN_TIME':'',
+            'FUEL_LEVEL':'',
+            
             }
 
 while True:
