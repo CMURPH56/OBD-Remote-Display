@@ -2,11 +2,22 @@ import time
 import obd
 
 connection = obd.OBD()
+
+pidSens = {
+            'COOLANT_TEMP':'',
+            'FUEL_PRESSURE':'',
+            'INTAKE_PRESSSURE':'',
+            'RPM':'',
+            'SPEED':'',
+            'THROTTLE_POS':'',
+            'RUN_TIME','FUEL_LEVEL'
+            }
+
 while True:
-    cmd = obd.commands.RPM
-    #print (connection.query(cmd))
-    revCount = connection.query(cmd)
-    #recCount = revCount.replace("revolutions_per_minute","")
-    revCountVal = str(revCount)
-    print((revCountVal).replace(" revolutions_per_minute",""))
-    time.sleep(1)
+    for k,v in pidSens:
+        cmd = obd.commands.k
+        response = connection.query(cmd)
+        pidSens[k]=response
+
+print(pidSens)
+time.sleep(1)
