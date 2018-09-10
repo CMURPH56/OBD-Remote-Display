@@ -2,7 +2,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 import datetime
-
+#https://rakibul.net/fb-realtime-db-python/
 
 # Fetch the service account key JSON file contents
 cred = credentials.Certificate('obdII.json')
@@ -11,6 +11,7 @@ firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://obdiidata.firebaseio.com/'
 })
 
+#function to scale values with count
 def translate(value, leftMin, leftMax, rightMin, rightMax):
     # Figure out how 'wide' each range is
     leftSpan = leftMax - leftMin
