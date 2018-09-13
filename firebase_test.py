@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 import datetime
+import time
 #https://rakibul.net/fb-realtime-db-python/
 
 # Fetch the service account key JSON file contents
@@ -12,7 +13,7 @@ firebase_admin.initialize_app(cred, {
 })
 
 #function to scale values with count
-def translate(value, leftMin, leftMax, rightMin, rightMax):
+def translate(value, leftMin, leftMax, rightMin, rightMax,):
     # Figure out how 'wide' each range is
     leftSpan = leftMax - leftMin
     rightSpan = rightMax - rightMin
@@ -38,15 +39,12 @@ while True:
         count = 1
 
     ref.set({
-            (dataStart):
+            ('object'):
                 {
-                    ("runSec " + str(runTime)): {
-                        'rpm': translate(count,0,250,0,55),
-                        'speed': translate(count,0,250,0,99),
-                        'manidPres': translate(count,0,250,-14,14),
-                        'oilTemp': translate(count,0,250,30,210)
-                    }
-                 }
-                }
-            )
+                    ('rpm'): int(translate(count,0,250,0,55)),
+                    ('speed'): int(translate(count,0,250,0,99)),
+                    ('manidPres'): int(translate(count,0,250,-14,14)),
+                    ('oilTemp'): int(translate(count,0,250,30,210)),}
+                })
+    time.sleep(.1)
     count = count+1
