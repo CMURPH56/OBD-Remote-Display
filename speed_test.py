@@ -1,8 +1,12 @@
 import time
 import obd
+
+'''
 print('hello')
 connection = obd.OBD()
 print('hello again')
+
+'''
 pidSens = {
             'COOLANT_TEMP':'',
             'FUEL_PRESSURE':'',
@@ -16,10 +20,16 @@ pidSens = {
             }
 
 
+def get_rpm():
+    return 'RPM'
 
 while True:
     for k,v in pidSens.items():
-        cmd = obd.commands.RPM
+
+        command = get_rpm()
+        print(command)
+        cmd = obd.commands.get_rpm()
+        
         response = connection.query(cmd)
         pidSens[k]=response
 
